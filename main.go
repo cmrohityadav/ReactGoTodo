@@ -16,15 +16,18 @@ type Todo struct {
 }
 
 func main() {
+	todos:=[]Todo{}
+
 	fmt.Println("Welcome to React+ Go")
 	app := fiber.New()
 	app.Get("/api/todos", func(c *fiber.Ctx) error {
-		return c.Status(200).JSON(fiber.Map{"msg": "Hello world"})
+		return c.Status(200).JSON(fiber.Map{"msg": "Hello world",
+	"data":todos})
 	})
 
 
 
-	todos:=[]Todo{}
+	
 
 
 	// to create todo

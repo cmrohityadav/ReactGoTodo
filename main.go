@@ -3,10 +3,11 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 	"strconv"
-	
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
 )
 
 type Todo struct {
@@ -16,6 +17,11 @@ type Todo struct {
 }
 
 func main() {
+	err:=godotenv.Load(".env")
+	if err!=nil{
+		log.Fatal("Error loading .env file")
+	}
+	PORT:=os.Getenv("PORT")
 	todos:=[]Todo{}
 
 	fmt.Println("Welcome to React+ Go")
@@ -88,6 +94,6 @@ func main() {
 
 	})
 
-	log.Fatal(app.Listen(":4000"))
+	log.Fatal(app.Listen(":"+PORT))
 
 }
